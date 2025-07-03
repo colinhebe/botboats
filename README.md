@@ -1,7 +1,17 @@
+
 # BotBoats
 
 **Your fleet of local AI companions.**  
 A lightweight, offline-first AI assistant platform featuring customizable characters, local chat history, and support for your own API keys — all packed in a PWA you can run anywhere.
+
+
+## 🚀 Auto Deployment
+
+This project is automatically deployed to [Cloudflare Pages](https://botboats.pages.dev/).
+
+Public URL:
+
+👉 https://botboats.pages.dev/
 
 ## 🚀 Features
 
