@@ -19,7 +19,6 @@ export async function loadLocalModel() {
   if (wllama) return;
   wllama = new Wllama(WLLAMA_CONFIG_PATHS, { logger: LoggerWithoutDebug });
 
-  const base = window.location.origin;
   await wllama.loadModelFromUrl(
     // [`${base}/models/tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf`],
     [
