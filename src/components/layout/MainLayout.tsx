@@ -1,13 +1,48 @@
 // MainLayout.tsx
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import BotSidebar from "../bots/BotSidebar";
 import ChatWindow from "../chats/ChatWindow";
 
 export const MainLayout: React.FC = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
+  useEffect(() => {
+    const setVh = () => {
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty("--vh", `${vh}px`);
+    };
+    setVh();
+    window.addEventListener("resize", setVh);
+    return () => window.removeEventListener("resize", setVh);
+  }, []);
+
+
+  // Keyboard handling for mobile devices
+  useEffect(() => {
+    const input = document.querySelector("input");
+    if (!input) return;
+
+    input.addEventListener("blur", () => {
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }, 100);
+    });
+
+    const onFocus = () => {
+      setTimeout(() => {
+        input.scrollIntoView({ block: "center", behavior: "smooth" });
+      }, 100);
+    };
+
+    input.addEventListener("focus", onFocus);
+    return () => input.removeEventListener("focus", onFocus);
+  }, []);
+
   return (
-    <div className="flex h-screen w-screen bg-gray-50">
+    <div
+      style={{ height: "calc(var(--vh) * 100)" }}
+      className="flex h-full w-screen  bg-gray-50"
+    >
       <div className="md:block hidden w-64 border-r border-gray-200">
         <BotSidebar />
       </div>
@@ -21,7 +56,7 @@ export const MainLayout: React.FC = () => {
       </div>
       {sidebarOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-20 z-10 md:hidden"
+          className="fixed inset-0 z-10 md:hidden backdrop-blur bg-white/40"
           onClick={() => setSidebarOpen(false)}
         />
       )}
