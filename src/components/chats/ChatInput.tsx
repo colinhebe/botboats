@@ -23,10 +23,10 @@ export default function ChatInput({ onSend }: ChatInputProps) {
   };
 
   return (
-    <div className="flex items-center gap-2 p-2 border-t border-gray-200 bg-white">
+    <div className="flex items-center gap-2 p-3 border-t border-gray-100 bg-white">
       <input
         type="text"
-        className="flex-1 p-2 border rounded shadow-sm focus:outline-none focus:ring focus:border-blue-300"
+        className="flex-1 p-3 border rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-300 transition"
         placeholder="Type a message..."
         value={input}
         onChange={(e) => setInput(e.target.value)}
@@ -34,7 +34,7 @@ export default function ChatInput({ onSend }: ChatInputProps) {
       />
       <button
         onClick={handleSend}
-        className="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600"
+        className="px-5 py-2 text-white bg-blue-500 rounded-xl hover:bg-blue-600 active:bg-blue-700 transition"
       >
         Send
       </button>
