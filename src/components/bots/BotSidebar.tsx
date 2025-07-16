@@ -3,6 +3,7 @@ import { useAtom, useAtomValue } from "jotai";
 import { allBotsAtom, currentBotIdAtom } from "../../atoms/botAtoms";
 import { chatMessagesAtom } from "../../atoms/chatAtoms";
 import { generateId } from "../../lib/id";
+import { Link } from "react-router-dom";
 
 export default function BotSidebar({ onClose }: { onClose?: () => void }) {
   const botMetas = useAtomValue(allBotsAtom);
@@ -13,6 +14,12 @@ export default function BotSidebar({ onClose }: { onClose?: () => void }) {
     <aside className="w-56 md:w-60 bg-white p-4 overflow-y-auto border-r border-gray-200 h-full">
       <div className="flex items-center mb-4">
         <h2 className="text-lg font-bold flex-1">Bots</h2>
+        <Link
+          to="/models"
+          className="ml-2 px-2 py-1 text-xs rounded bg-blue-100 text-blue-700 hover:bg-blue-200 transition"
+        >
+          Manage Models
+        </Link>
         {onClose && (
           <button
             onClick={onClose}
@@ -34,6 +41,7 @@ export default function BotSidebar({ onClose }: { onClose?: () => void }) {
           </button>
         )}
       </div>
+      
       <ul className="space-y-2">
         {botMetas.map((bot) => (
           <li
