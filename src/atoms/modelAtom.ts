@@ -8,7 +8,7 @@ const selectedModel = atom<Model | null>(null);
 
 export const modelAtom = atom(
   (get) => get(selectedModel) || get(allModels)[0] || null,
-  (get, set, newModel: Model | null) => {
+  (_get, set, newModel: Model | null) => {
     set(selectedModel, newModel);
   }
 );
